@@ -94,8 +94,10 @@ def main():
     cmd = None
     if facts['distribution'] in ['CentOS', 'RedHat']:
         cmd = "service iptables save"
-    elif facts['distribution'] == 'Debian':
+    elif facts['distribution'] == 'Debian' and facts['distribution_major_version'] <= 7:
         cmd = "service iptables-persistent save"
+    elif facts['distribution'] == 'Debian' and facts['distribution_major_version'] >= 8:
+        cmd = "service netfilter-persistent save"
 
     if cmd:
         _, stdout, stderr = module.run_command(cmd, check_rc=True)
