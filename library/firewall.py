@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from distutils.version import LooseVersion
 
 
 def generate_docker_rules(save):
@@ -94,9 +95,9 @@ def main():
     cmd = None
     if facts['distribution'] in ['CentOS', 'RedHat']:
         cmd = "service iptables save"
-    elif facts['distribution'] == 'Debian' and facts['distribution_major_version'] <= 7:
+    elif facts['distribution'] == 'Debian' and LooseVersion(facts['distribution_major_version']) <= LooseVersion('7'):
         cmd = "service iptables-persistent save"
-    elif facts['distribution'] == 'Debian' and facts['distribution_major_version'] >= 8:
+    elif facts['distribution'] == 'Debian' and LooseVersion(facts['distribution_major_version']) >= LooseVersion('8'):
         cmd = "service netfilter-persistent save"
 
     if cmd:
