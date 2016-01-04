@@ -36,6 +36,7 @@ def generate_docker_rules(save):
 
     if rules:
         rules.insert(0, '-t nat -N DOCKER')
+        rules.insert(0, '-N DOCKER')
     return rules
 
 
