@@ -15,4 +15,4 @@ galaxy_info:
     - system
     - networking
 dependencies:
-  - role: aeriscloud.yum
+  - role: AerisCloud.yum
