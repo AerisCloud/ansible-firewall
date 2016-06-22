@@ -21,14 +21,15 @@ def generate_docker_rules(save):
 
         # ignore custom rules
         for chain in ['PREROUTING', 'POSTROUTING', 'OUTPUT', 'DOCKER',
-                      'FORWARD']:
+                      'DOCKER-ISOLATION', 'FORWARD']:
             if line.startswith('-A ' + chain):
                 break
         else:
             continue
 
         # Add it to the nat table if required
-        for chain in ['PREROUTING', 'POSTROUTING', 'OUTPUT', 'DOCKER']:
+        for chain in ['PREROUTING', 'POSTROUTING', 'OUTPUT', 'DOCKER',
+                      'DOCKER-ISOLATION']:
             if line.startswith('-A ' + chain):
                 line = '-t nat ' + line
 
@@ -37,6 +38,8 @@ def generate_docker_rules(save):
     if rules:
         rules.insert(0, '-t nat -N DOCKER')
         rules.insert(0, '-N DOCKER')
+        rules.insert(0, '-t nat -N DOCKER-ISOLATION')
+        rules.insert(0, '-N DOCKER-ISOLATION')
     return rules
 
 
