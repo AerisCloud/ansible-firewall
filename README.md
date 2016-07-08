@@ -13,7 +13,7 @@ In your role's meta, add a dependency to this role using the syntax described be
 ```yaml
 # my_role/meta/main.yml
   - role: firewall
-    role_name: my_role
+    caller_name: my_role
 ```
 
 When you will run the playbook, the rules will be applied.
