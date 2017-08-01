@@ -15,10 +15,10 @@
   tags:
     - firewall
 
-- name: "Add the {{ role_name }} firewall rules file"
+- name: "Add the {{ caller_name }} firewall rules file"
   template: >
-    src=../../{{ role_name }}/templates/iptables.j2
-    dest=/etc/iptables.d/{{ role_name }}
+    src=roles/{{ caller_name }}/templates/iptables.j2
+    dest=/etc/iptables.d/{{ caller_name }}
     mode=0600
     backup=no
     owner=root

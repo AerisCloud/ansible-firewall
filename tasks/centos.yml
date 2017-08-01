@@ -13,6 +13,7 @@
     enabled=no
     state=stopped
   when: ansible_distribution_major_version|int == 7
+  ignore_errors: yes
   tags:
     - firewall
 

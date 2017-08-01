@@ -50,7 +50,7 @@ def main():
             state=dict(default='reloaded', choices=['reloaded'])
         )
     )
-    facts = ansible_facts(module)
+    facts = ansible_facts(module, [])
 
     state = module.params['state']
 
